@@ -1,8 +1,11 @@
 # Common commands for .bashrc. Include by adding the following to .bashrc:
 #
-#     if [ -f ~/.bashrc.dotfiles.git ]; then
-#         . ~/.bashrc.dotfiles.git
+#     if [ -f ~/.bashrc.dotfiles ]; then
+#         . ~/.bashrc.dotfiles
 #     fi
+
+# dotfiles alias
+alias dotfiles='git --git-dir=$HOME/.dotfiles.git/ --work-tree=$HOME/'
 
 # Common bash prompt
 export PS1="[\[\e[32m\e[1m\]\u@\h\[\e[0m\]:\[\e[34m\e[1m\]\w\[\e[0m\]]\$ "
