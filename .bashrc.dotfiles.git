@@ -1,0 +1,12 @@
+# Common commands for .bashrc. Include by adding the following to .bashrc:
+#
+#     if [ -f ~/.bashrc.dotfiles.git ]; then
+#         . ~/.bashrc.dotfiles.git
+#     fi
+
+# Common bash prompt
+export PS1="[\[\e[32m\e[1m\]\u@\h\[\e[0m\]:\[\e[34m\e[1m\]\w\[\e[0m\]]\$ "
+
+# Julia environment variables
+export JULIA_PKG_DEVDIR=$HOME/dev
+export JULIA_PROJECT=@.
