@@ -16,5 +16,9 @@ export JULIA_PROJECT=@.
 
 # Start tmux by default
 if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
-    tmux attach -t default || tmux new -s default
+    if tmux ls | grep "default: " > /dev/null; then
+        tmux attach -t default
+    else
+        tmux new -s default
+    fi
 fi
