@@ -1,8 +1,15 @@
 # Common commands for .bashrc. Include by adding the following to .bashrc:
 #
+#     # Include cross-system common parts from .dotfiles.git repo
 #     if [ -f ~/.bashrc.dotfiles ]; then
 #         . ~/.bashrc.dotfiles
 #     fi
+
+# If not running interactively, don't do anything
+case $- in
+    *i*) ;;
+      *) return;;
+esac
 
 # dotfiles alias
 alias dotfiles='git --git-dir=$HOME/.dotfiles.git/ --work-tree=$HOME/'
