@@ -6,6 +6,8 @@ call plug#begin('~/.vim/plugged')
     Plug 'cespare/vim-toml'
     "LaTeX
     Plug 'lervag/vimtex'
+    Plug 'junegunn/fzf'
+    Plug 'junegunn/fzf.vim'
 
 call plug#end()
 
@@ -21,6 +23,9 @@ endif
 
 "Line numbers
 :set number
+"Column guide
+:set colorcolumn=93
+:highlight ColorColumn ctermbg=darkgrey
 
 "Misc keymappings and configurations
 :imap jk <Esc> |"use jk for exiting insert mode
