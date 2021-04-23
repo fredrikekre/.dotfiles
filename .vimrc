@@ -46,3 +46,7 @@ call plug#end()
 :autocmd VimResized * wincmd =
 "Airline status bar
 :let g:airline_theme='bubblegum'
+"Keep some lines above/below cursor
+:set scrolloff=10
+"Use clipboard for everything (instead of */+ registers)
+:set clipboard+=unnamedplus
