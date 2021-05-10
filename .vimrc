@@ -15,6 +15,8 @@ call plug#begin('~/.vim/plugged')
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
 
+    Plug 'tpope/vim-commentary'
+
 call plug#end()
 
 "Need to specify latex flavor for the lervag/vimtex plugin
@@ -48,5 +50,6 @@ call plug#end()
 :let g:airline_theme='bubblegum'
 "Keep some lines above/below cursor
 :set scrolloff=10
+
 "Use clipboard for everything (instead of */+ registers)
 :set clipboard+=unnamedplus
