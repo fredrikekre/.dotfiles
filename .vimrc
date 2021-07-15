@@ -17,6 +17,8 @@ call plug#begin('~/.vim/plugged')
 
     Plug 'tpope/vim-commentary'
 
+    Plug 'neovim/nvim-lspconfig'
+
 call plug#end()
 
 "Need to specify latex flavor for the lervag/vimtex plugin
