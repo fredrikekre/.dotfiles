@@ -11,3 +11,4 @@ require'lspconfig'.julials.setup{
     end
 }
 EOF
+:nmap K :lua vim.lsp.buf.hover() <CR>

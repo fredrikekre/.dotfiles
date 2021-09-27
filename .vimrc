@@ -17,7 +17,9 @@ call plug#begin('~/.vim/plugged')
 
     Plug 'tpope/vim-commentary'
 
-    Plug 'neovim/nvim-lspconfig'
+    if has('nvim')
+        Plug 'neovim/nvim-lspconfig'
+    end
 
 call plug#end()
 
