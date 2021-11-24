@@ -16,6 +16,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'vim-airline/vim-airline-themes'
 
     Plug 'tpope/vim-commentary'
+    Plug 'tpope/vim-fugitive'
 
     if has('nvim')
         Plug 'neovim/nvim-lspconfig'
@@ -52,6 +53,11 @@ call plug#end()
 :autocmd VimResized * wincmd =
 "Airline status bar
 :let g:airline_theme='bubblegum'
+:let g:airline#extensions#tabline#left_sep=' '
+:let g:airline#extensions#tabline#left_alt_sep=' '
+:let g:airline#extensions#tabline#enabled = 1
+:set noshowmode "Already showed by airline
+
 "Keep some lines above/below cursor
 :set scrolloff=10
 
