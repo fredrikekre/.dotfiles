@@ -2,20 +2,22 @@ call plug#begin('~/.vim/plugged')
 
     "Julia support
     Plug 'JuliaEditorSupport/julia-vim'
-    "TOML syntax highlighting
-    Plug 'cespare/vim-toml'
-    "LaTeX
-    Plug 'lervag/vimtex'
 
+    "fzf plugins
     Plug 'junegunn/fzf'
     Plug 'junegunn/fzf.vim'
 
+    "Gruvbox color theme
     Plug 'morhetz/gruvbox'
 
+    "Status/tabline
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
 
+    "Comment/out blocks of code
     Plug 'tpope/vim-commentary'
+
+    "Git plugin
     Plug 'tpope/vim-fugitive'
 
     if has('nvim')
@@ -24,8 +26,6 @@ call plug#begin('~/.vim/plugged')
 
 call plug#end()
 
-"Need to specify latex flavor for the lervag/vimtex plugin
-:let g:tex_flavor = 'latex'
 "Color scheme
 :let g:gruvbox_contrast_dark='hard'
 :colorscheme gruvbox
