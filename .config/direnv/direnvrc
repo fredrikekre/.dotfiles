@@ -6,9 +6,10 @@ julia_args() {
     # Create a bin directory
     mkdir -p bin
     # Create a wrapper script to call julia with the arguments
-    echo "#!/bin/bash
-    exec $(which julia) "$@" \"\$@\"
-    " > bin/julia
+    {
+        echo "#!/bin/bash"
+        echo "exec $(which julia) $* \"\$@\""
+    } > bin/julia
     # Make it executable
     chmod +x bin/julia
     # Make sure bin is in PATH
