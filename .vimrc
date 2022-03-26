@@ -31,7 +31,7 @@ call plug#end()
 :colorscheme gruvbox
 :highlight Normal ctermbg=NONE
 "Line numbers
-:set number
+:set number relativenumber
 "Column guide
 :set colorcolumn=93
 "Misc keymappings and configurations
