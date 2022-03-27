@@ -54,7 +54,7 @@ call plug#end()
 :nnoremap <C-H> <C-W><C-H>
 "Easier fzf keybindings
 :nnoremap <C-F> :Rg!<CR>
-:nnoremap <C-O> :Files!<CR>
+:nnoremap <C-P> :GFiles!<CR>
 "More natural split directions
 :set splitbelow
 :set splitright
