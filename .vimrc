@@ -45,7 +45,7 @@ call plug#end()
 "Column guide
 :set colorcolumn=93
 "Misc keymappings and configurations
-:imap jk <Esc> |"use jk for exiting insert mode
+:imap jk <Esc>
 :set tabstop=4 softtabstop=4 shiftwidth=4 expandtab smarttab autoindent "Nicer tab actions
 "Move aroung splits without the C-W prefix
 :nnoremap <C-J> <C-W><C-J>
