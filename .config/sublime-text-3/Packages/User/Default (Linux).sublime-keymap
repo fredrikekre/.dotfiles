@@ -20,4 +20,13 @@
     { "keys": ["ctrl+shift+u"], "command": "swap_line_up" },
     { "keys": ["ctrl+shift+down"], "command": "swap_line_down" },
     { "keys": ["ctrl+shift+h"], "command": "swap_line_down" },
+    {
+      "keys": ["j", "k"],
+      "command": "exit_insert_mode",
+      "context":
+        [
+          { "key": "setting.command_mode", "operand": false },
+          { "key": "setting.is_widget", "operand": false }
+        ]
+    }
 ]
