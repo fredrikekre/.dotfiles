@@ -39,7 +39,9 @@ call plug#end()
 "Color scheme
 :let g:gruvbox_contrast_dark='hard'
 :colorscheme gruvbox
-:highlight Normal ctermbg=NONE
+:set termguicolors
+:highlight Normal guibg=NONE
+:highlight SignColumn guibg=NONE
 "Line numbers
 :set number relativenumber
 "Column guide
