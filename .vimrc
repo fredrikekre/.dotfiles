@@ -44,8 +44,11 @@ call plug#end()
 :highlight SignColumn guibg=NONE
 "Line numbers
 :set number relativenumber
-"Column guide
+
+" Column guide
 :set colorcolumn=93
+:highlight ColorColumn guibg=gray5
+
 "Misc keymappings and configurations
 :imap jk <Esc>
 :set tabstop=4 softtabstop=4 shiftwidth=4 expandtab smarttab autoindent "Nicer tab actions
