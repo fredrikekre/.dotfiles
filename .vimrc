@@ -49,6 +49,9 @@ call plug#end()
 :set colorcolumn=93
 :highlight ColorColumn guibg=gray5
 
+" Show trailing whitespace etc
+:set list listchars=tab:>-,trail:-,nbsp:+
+
 "Misc keymappings and configurations
 :imap jk <Esc>
 :set tabstop=4 softtabstop=4 shiftwidth=4 expandtab smarttab autoindent "Nicer tab actions
