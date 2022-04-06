@@ -1,10 +1,12 @@
 JULIA=$(shell which julia)
 JULIA_PROJECT=
+SRCDIR:=$(shell dirname $(abspath $(firstword $(MAKEFILE_LIST))))
 ifeq ($(shell uname -s),Linux)
 	SYSIMAGE=languageserver.so
 else
 	SYSIMAGE=languageserver.dylib
 endif
+
 default: $(SYSIMAGE)
 
 $(SYSIMAGE): Manifest.toml packagecompiler/Manifest.toml packagecompiler/precompile_statements.jl
@@ -30,26 +32,7 @@ packagecompiler/precompile_statements.jl: Manifest.toml bin/julia
 	cd Example && \
 	JULIA_LOAD_PATH=$${PWD}:@stdlib ${JULIA} -e 'using Pkg; Pkg.add(["JSON", "fzf_jll", "Random", "Zlib_jll"])' 2> /dev/null && \
 	JULIA_LOAD_PATH=$${PWD}:@stdlib ${JULIA} -e 'using Pkg; Pkg.precompile()' 2> /dev/null && \
-	echo "module Example" > src/Example.jl && \
-	echo "" >> src/Example.jl && \
-	echo "import JSON" >> src/Example.jl && \
-	echo "import fzf_jll" >> src/Example.jl && \
-	echo "using Random" >> src/Example.jl && \
-	echo "using Zlib_jll" >> src/Example.jl && \
-	echo "" >> src/Example.jl && \
-	echo "function hello(who, notused)" >> src/Example.jl && \
-	echo "    println(\"hello\", who)" >> src/Example.jl && \
-	echo "    shuffle([1, 2, 3])" >> src/Example.jl && \
-	echo "    shoffle([1, 2, 3])" >> src/Example.jl && \
-	echo "    fzzf = fzf_jll.fzzf()" >> src/Example.jl && \
-	echo "    fzf = fzf_jll.fzf(1)" >> src/Example.jl && \
-	echo "    JSON.print(stdout, Dict(\"hello\" => [1, 2, 3]), 2, 123)" >> src/Example.jl && \
-	echo "    JSON.print(stdout, Dict(\"hello\" => [1, 2, 3]))" >> src/Example.jl && \
-	echo "    hi(who)" >> src/Example.jl && \
-	echo "    return Zlib_jll.libz" >> src/Example.jl && \
-	echo "end" >> src/Example.jl && \
-	echo "" >> src/Example.jl && \
-	echo "end # module" >> src/Example.jl && \
+	cat ${SRCDIR}/Example.jl > src/Example.jl && \
 	JULIA_TRACE_COMPILE=1 nvim src/Example.jl && \
 	rm -rf $${TMPDIR}
 
