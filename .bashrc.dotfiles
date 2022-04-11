@@ -32,6 +32,17 @@ else
 fi
 export PS1
 
+# # ls colors
+# if [[ "${TERM}" =~ 256 ]]; then
+#     # Replace standard dircolors with the bubblegum theme from vim-airline, see
+#     # https://github.com/vim-airline/vim-airline-themes/blob/97cf3e6e638f936187d5f6e9b5eb1bdf0a4df256/autoload/airline/themes/bubblegum.vim
+#     LS_COLORS=${LS_COLORS//=01;31:/=01;38;5;174:} # Red    (archives, missing files...)
+#     LS_COLORS=${LS_COLORS//=01;32:/=01;38;5;150:} # Green  (executable files)
+#     LS_COLORS=${LS_COLORS//=01;34:/=01;38;5;110:} # Blue   (directories)
+#     LS_COLORS=${LS_COLORS//=01;35:/=01;38;5;182:} # Purple (images, videos, ...)
+#     LS_COLORS=${LS_COLORS//=00;36:/=00;38;5;80:}  # Cyan   (sound, ...)
+# fi
+
 # Julia environment variables
 export JULIA_PKG_DEVDIR=$HOME/dev
 export JULIA_PROJECT=@.
