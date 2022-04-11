@@ -70,12 +70,15 @@ call plug#end()
 "Auto-resize splits when terminal window changes size (e.g. when splitting or
 "zooming with tmux
 :autocmd VimResized * wincmd =
-"Airline status bar
+
+" Airline status bar
 :let g:airline_theme='bubblegum'
-:let g:airline#extensions#tabline#left_sep=' '
-:let g:airline#extensions#tabline#left_alt_sep=' '
+":let g:airline_left_sep=''
+":let g:airline_right_sep=''
 :let g:airline#extensions#tabline#enabled = 1
-:set noshowmode "Already showed by airline
+":let g:airline#extensions#tabline#left_sep=''
+:let g:airline_skip_empty_sections = 1
+:set noshowmode " Already showed by airline
 
 "Keep some lines above/below cursor
 :set scrolloff=10
