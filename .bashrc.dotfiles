@@ -32,15 +32,30 @@ else
 fi
 export PS1
 
-# # ls colors
+
+# ls colors
+if [[ "${OSTYPE}" == "linux-gnu"* ]] && command -v dircolors &> /dev/null; then
+    eval "$(dircolors -b)" # Set and export LS_COLORS
+    alias ls='ls --color=auto'
+elif [[ "${OSTYPE}" == "darwin"* ]]; then
+    if command -v gls &> /dev/null && command -v gdircolors &> /dev/null; then
+        # Use gnu ls
+        eval "$(gdircolors -b)" # Set and export LS_COLORS
+        alias ls='gls --color=auto'
+    else
+        export LSCOLORS=ExGxBxDxCxEgEdxbxgxcxd
+        alias ls='ls -G'
+    fi
+fi
+
+# # Replace standard dircolors with the bubblegum theme from vim-airline, see
+# # https://github.com/vim-airline/vim-airline-themes/blob/97cf3e6e638f936187d5f6e9b5eb1bdf0a4df256/autoload/airline/themes/bubblegum.vim
 # if [[ "${TERM}" =~ 256 ]]; then
-#     # Replace standard dircolors with the bubblegum theme from vim-airline, see
-#     # https://github.com/vim-airline/vim-airline-themes/blob/97cf3e6e638f936187d5f6e9b5eb1bdf0a4df256/autoload/airline/themes/bubblegum.vim
-#     LS_COLORS=${LS_COLORS//=01;31:/=01;38;5;174:} # Red    (archives, missing files...)
-#     LS_COLORS=${LS_COLORS//=01;32:/=01;38;5;150:} # Green  (executable files)
-#     LS_COLORS=${LS_COLORS//=01;34:/=01;38;5;110:} # Blue   (directories)
-#     LS_COLORS=${LS_COLORS//=01;35:/=01;38;5;182:} # Purple (images, videos, ...)
-#     LS_COLORS=${LS_COLORS//=00;36:/=00;38;5;80:}  # Cyan   (sound, ...)
+#     LS_COLORS=${LS_COLORS//=01;31:/=01;38;5;174:} # Red
+#     LS_COLORS=${LS_COLORS//=01;32:/=01;38;5;150:} # Green
+#     LS_COLORS=${LS_COLORS//=01;34:/=01;38;5;110:} # Blue
+#     LS_COLORS=${LS_COLORS//=01;35:/=01;38;5;182:} # Purple
+#     LS_COLORS=${LS_COLORS//=00;36:/=00;38;5;80:}  # Cyan
 # fi
 
 # Julia environment variables
