@@ -66,4 +66,11 @@ require'lspconfig'.julials.setup({
     capabilities = capabilities,
 })
 
+require('gitsigns').setup({
+    signs = {
+        add = { text = '+'},
+        change = { text = '±'},
+    },
+})
+
 EOF

@@ -33,6 +33,9 @@ call plug#begin('~/.vim/plugged')
         " Snippet engine required for nvim-cmp (expands things from LS)
         Plug 'L3MON4D3/LuaSnip'
         Plug 'saadparwaiz1/cmp_luasnip'
+
+        " Git changes in the sign column
+        Plug 'lewis6991/gitsigns.nvim'
     end
 
 call plug#end()
