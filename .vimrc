@@ -7,8 +7,9 @@ call plug#begin('~/.vim/plugged')
     Plug 'junegunn/fzf'
     Plug 'junegunn/fzf.vim'
 
-    "Gruvbox color theme
-    Plug 'morhetz/gruvbox'
+    " Gruvbox color theme
+    "Plug 'morhetz/gruvbox'
+    Plug 'fredrikekre/gruvbox'
 
     "Status/tabline
     Plug 'vim-airline/vim-airline'
@@ -36,18 +37,19 @@ call plug#begin('~/.vim/plugged')
 
 call plug#end()
 
-"Color scheme
-:let g:gruvbox_contrast_dark='hard'
+" Color scheme
+:let g:gruvbox_contrast_dark='harder'
+:let g:gruvbox_invert_selection=0
+:let g:gruvbox_sign_column='bg0'
 :colorscheme gruvbox
 :set termguicolors
-:highlight Normal guibg=NONE
-:highlight SignColumn guibg=NONE
+
 "Line numbers
 :set number relativenumber
 
 " Column guide
 :set colorcolumn=93
-:highlight ColorColumn guibg=gray5
+:highlight ColorColumn guibg='#1d2021'
 
 " Show trailing whitespace etc
 :set list listchars=tab:>-,trail:-,nbsp:+
