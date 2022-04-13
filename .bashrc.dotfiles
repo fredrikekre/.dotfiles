@@ -26,7 +26,7 @@ alias dotfiles='git --git-dir="$HOME/.dotfiles.git/" --work-tree="$HOME/"'
 # Bash prompt
 if [[ "${TERM}" =~ 256 ]]; then
     # Colors from vim-airline bubblegum theme: 110 blue, 150 green
-    PS1="[\[\e[38;5;110m\e[1m\]\u@\h\[\e[0m\]:\[\e[38;5;150m\e[1m\]\w\e[0m\]]\$ "
+    PS1="[\[\e[38;5;110m\e[1m\]\u@\h\[\e[0m\]:\[\e[38;5;150m\e[1m\]\w\[\e[0m\]]\$ "
 else
     PS1="[\[\e[32m\e[1m\]\u@\h\[\e[0m\]:\[\e[34m\e[1m\]\w\[\e[0m\]]\$ "
 fi
