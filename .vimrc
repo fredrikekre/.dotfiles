@@ -20,6 +20,7 @@ call plug#begin('~/.vim/plugged')
 
     "Git plugin
     Plug 'tpope/vim-fugitive'
+    Plug 'tpope/vim-rhubarb'
 
     if has('nvim')
         " LSP helpers
