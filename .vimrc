@@ -51,6 +51,7 @@ call plug#end()
 :let g:gruvbox_colors.dark2 = ['#3c3836', 237] " dark1
 :let g:gruvbox_colors.dark3 = ['#504945', 239] " dark2
 :let g:gruvbox_colors.dark4 = ['#665c54', 241] " dark3
+:let g:gruvbox_invert_selection=0
 :let g:gruvbox_sign_column='bg0'
 :colorscheme gruvbox
 :set termguicolors
