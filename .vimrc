@@ -8,8 +8,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'junegunn/fzf.vim'
 
     " Gruvbox color theme
-    "Plug 'morhetz/gruvbox'
-    Plug 'fredrikekre/gruvbox'
+    Plug 'gruvbox-community/gruvbox'
 
     "Status/tabline
     Plug 'vim-airline/vim-airline'
@@ -37,13 +36,21 @@ call plug#begin('~/.vim/plugged')
 
         " Git changes in the sign column
         Plug 'lewis6991/gitsigns.nvim'
+
+        " Code coverage in sign column
+        Plug 'nvim-lua/plenary.nvim'
+        Plug 'andythigpen/nvim-coverage'
     end
 
 call plug#end()
 
-" Color scheme
-:let g:gruvbox_contrast_dark='harder'
-:let g:gruvbox_invert_selection=0
+" Color scheme adjustments
+:let g:gruvbox_colors = {}
+:let g:gruvbox_colors.dark0 = ['#0f0f0f', 233]
+:let g:gruvbox_colors.dark1 = ['#282828', 235] " dark0
+:let g:gruvbox_colors.dark2 = ['#3c3836', 237] " dark1
+:let g:gruvbox_colors.dark3 = ['#504945', 239] " dark2
+:let g:gruvbox_colors.dark4 = ['#665c54', 241] " dark3
 :let g:gruvbox_sign_column='bg0'
 :colorscheme gruvbox
 :set termguicolors
