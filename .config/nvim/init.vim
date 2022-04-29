@@ -7,7 +7,8 @@ lua << EOF
 -- Setup nvim-cmp.
 vim.opt.completeopt = {"menu", "menuone", "noselect"}
 
-local cmp = require'cmp'
+local cmp = require('cmp')
+local cmp_types = require('cmp.types')
 local source_mapping = {buffer = '[Buffer]', nvim_lsp = '[LSP]'}
 
 cmp.setup({
@@ -17,9 +18,25 @@ cmp.setup({
         end,
     },
     mapping = cmp.mapping.preset.insert({
-        ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs( 4), { 'i', 'c' }),
-        ['<C-b>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
-        ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
+        -- ['<C-n>'] = cmp.mapping(cmp.mapping.select_next_item({ behavior = cmp_types.cmp.SelectBehavior.Insert })),
+        -- This is to make <C-n> the hotkey for both initiating completion and select next item
+        ['<C-n>'] = function(fallback)
+            if cmp.visible() then
+                cmp.select_next_item({ behavior = cmp_types.cmp.SelectBehavior.Insert })
+            elseif (function()
+                    local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+                    return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+                end)() then
+                cmp.complete()
+            else
+                fallback()
+            end
+        end,
+        ['<C-p>'] = cmp.mapping.select_prev_item({ behavior = cmp_types.cmp.SelectBehavior.Insert }),
+        ['<C-f>'] = cmp.mapping.scroll_docs( 4),
+        ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+        ['<C-Space>'] = cmp.mapping.complete(), -- same as <C-n> above
+        ['<C-e>'] = cmp.mapping.abort(),
         ['<CR>'] = cmp.mapping.confirm({ select = false }),
     }),
     sources = cmp.config.sources({
