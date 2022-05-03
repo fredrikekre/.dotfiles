@@ -21,6 +21,9 @@ call plug#begin('~/.vim/plugged')
     Plug 'tpope/vim-fugitive'
     Plug 'tpope/vim-rhubarb'
 
+    " Send code to REPL
+    Plug 'jpalardy/vim-slime'
+
     if has('nvim')
         " LSP helpers
         Plug 'neovim/nvim-lspconfig'
@@ -99,3 +102,7 @@ call plug#end()
 
 "Use clipboard for everything (instead of */+ registers)
 :set clipboard+=unnamedplus
+
+" vim-slime settings for use in tmux
+:let g:slime_target="tmux"
+:let g:slime_default_config={"socket_name": "default", "target_pane": "{last}"}
