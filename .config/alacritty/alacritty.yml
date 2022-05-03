@@ -1,0 +1,11 @@
+env:
+  TERM: xterm-256color
+
+font:
+  normal:
+    family: JuliaMono
+
+colors:
+  primary:
+    background: '#0f0f0f'
+    foreground: '#cfcfcf'
