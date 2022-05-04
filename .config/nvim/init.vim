@@ -90,6 +90,14 @@ require'lspconfig'.julials.setup({
     capabilities = capabilities,
 })
 
+-- null-ls
+require("null-ls").setup({
+    sources = {
+        require("null-ls").builtins.diagnostics.shellcheck,
+    },
+})
+
+
 require('gitsigns').setup({
     signs = {
         add = { text = '+'},

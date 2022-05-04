@@ -43,6 +43,10 @@ call plug#begin('~/.vim/plugged')
         " Code coverage in sign column
         Plug 'nvim-lua/plenary.nvim'
         Plug 'andythigpen/nvim-coverage'
+
+        " null-ls
+        " Plug 'nvim-lua/plenary.nvim'
+        Plug 'jose-elias-alvarez/null-ls.nvim'
     end
 
 call plug#end()
