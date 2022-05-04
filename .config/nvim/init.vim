@@ -60,7 +60,7 @@ local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protoco
 
 -- Set LSP keymappings in on_attach (i.e. only in buffers with LSP active)
 local on_attach = function(client, bufnr)
-    opts = { noremap=true, silent=true }
+    local opts = { noremap=true, silent=true }
     vim.api.nvim_buf_set_keymap(bufnr, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
     vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
     vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>lrn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
@@ -95,6 +95,13 @@ require('gitsigns').setup({
         add = { text = '+'},
         change = { text = '±'},
     },
+    on_attach = function(bufnr)
+        -- Hunk navigation
+        local opts = { expr=true, noremap=true, silent=true, }
+        vim.api.nvim_buf_set_keymap(bufnr, 'n', ']c', "&diff ? ']c' : '<cmd>Gitsigns next_hunk<CR>'", opts)
+        vim.api.nvim_buf_set_keymap(bufnr, 'n', '[c', "&diff ? '[c' : '<cmd>Gitsigns prev_hunk<CR>'", opts)
+    end,
+
 })
 
 EOF
