@@ -112,4 +112,6 @@ require('gitsigns').setup({
 
 })
 
+-- require('coverage').setup()
+
 EOF
