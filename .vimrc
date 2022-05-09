@@ -110,3 +110,7 @@ call plug#end()
 " vim-slime settings for use in tmux
 :let g:slime_target="tmux"
 :let g:slime_default_config={"socket_name": "default", "target_pane": "{last}"}
+:nnoremap <C-c><C-c> <Plug>SlimeParagraphSend
+:nnoremap <S-CR> <Plug>SlimeParagraphSend
+:xnoremap <C-c><C-c> <Plug>SlimeRegionSend
+:xnoremap <S-CR> <Plug>SlimeRegionSend
