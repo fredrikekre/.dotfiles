@@ -90,6 +90,12 @@ require'lspconfig'.julials.setup({
     capabilities = capabilities,
 })
 
+-- Rust LSP (rust_analyzer)
+require('lspconfig').rust_analyzer.setup({
+    on_attach = on_attach,
+    capabilities = capabilities,
+})
+
 -- null-ls
 require("null-ls").setup({
     sources = {
