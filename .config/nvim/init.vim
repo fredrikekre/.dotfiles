@@ -96,6 +96,12 @@ require('lspconfig').rust_analyzer.setup({
     capabilities = capabilities,
 })
 
+-- C/++ LSP (clangd)
+require('lspconfig').clangd.setup({
+    on_attach = on_attach,
+    capabilities = capabilities,
+})
+
 -- null-ls
 require("null-ls").setup({
     sources = {
