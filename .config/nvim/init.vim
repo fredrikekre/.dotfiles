@@ -121,7 +121,7 @@ require('gitsigns').setup({
         vim.api.nvim_buf_set_keymap(bufnr, 'n', ']c', "&diff ? ']c' : '<cmd>Gitsigns next_hunk<CR>'", opts)
         vim.api.nvim_buf_set_keymap(bufnr, 'n', '[c', "&diff ? '[c' : '<cmd>Gitsigns prev_hunk<CR>'", opts)
     end,
-
+    attach_to_untracked = false,
 })
 
 -- require('coverage').setup()
