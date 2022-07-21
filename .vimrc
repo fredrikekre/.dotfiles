@@ -111,6 +111,14 @@ call plug#end()
 :let g:slime_target="tmux"
 :let g:slime_default_config={"socket_name": "default", "target_pane": "{last}"}
 :let g:slime_dont_ask_default=1
+:function SlimeOverrideConfig()
+:    " This expands {last} to a fixed pane id. This is done in the override function in
+:    " order to delay the expansion until first usage instead of when Vim starts.
+:    let b:slime_config = g:slime_default_config
+:    let l:last_pane_id = trim(system('tmux display -pt "{last}" "#{pane_id}"'))
+:    let b:slime_config['target_pane'] = l:last_pane_id
+:endfunction
+:let g:slime_bracketed_paste=1
 :nnoremap <C-c><C-c> <Plug>SlimeParagraphSend
 :nnoremap <S-CR> <Plug>SlimeParagraphSend
 :xnoremap <C-c><C-c> <Plug>SlimeRegionSend
