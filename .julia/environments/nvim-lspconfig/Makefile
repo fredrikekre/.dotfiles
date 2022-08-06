@@ -1,3 +1,43 @@
+# MIT License. Copyright (c) 2021 Fredrik Ekre
+#
+# This Makefile can be used to build a custom Julia system image for LanguageServer.jl to
+# use with neovims built in LSP support. An up-to date version of this Makefile can be found
+# at https://github.com/fredrikekre/.dotfiles/blob/master/.julia/environments/nvim-lspconfig/Makefile
+#
+# Usage instructions:
+#
+#   1. Update the neovim configuration to use a custom julia executable. If you use
+#      nvim-lspconfig (recommended) you can modify the setup call to the following:
+#
+#          require("lspconfig").julials.setup({
+#              on_new_config = function(new_config, _)
+#                  local julia = vim.fn.expand("~/.julia/environments/nvim-lspconfig/bin/julia")
+#                  if require("lspconfig").util.path.is_file(julia) then
+#                      new_config.cmd[1] = julia
+#                  end
+#              end,
+#              -- ...
+#          })
+#
+#   2. Place this Makefile in ~/.julia/environments/nvim-lspconfig (create the directory if
+#      it doesn't already exist).
+#
+#   3. Change directory to ~/.julia/environments/nvim-lspconfig and run `make`. This will
+#      start up neovim in a custom project with a julia process that recods compiler
+#      statements. Follow the instructions in the opened source file, and then exit neovim.
+#
+#   4. Upon exiting neovim PackageCompiler.jl will compile a custom system image which will
+#      automatically be used whenever you work on Julia projects in neovim.
+#
+# Update instructions:
+#
+#  To update the system image (e.g. when upgrading Julia or upgrading LanguageServer.jl or
+#  it's dependencies) run the following commands from the
+#  ~/.julia/environments/nvim-lspconfig directory:
+#
+#      julia --project=. -e 'using Pkg; Pkg.update()'
+#      make
+
 JULIA=$(shell which julia)
 JULIA_PROJECT=
 SRCDIR:=$(shell dirname $(abspath $(firstword $(MAKEFILE_LIST))))
