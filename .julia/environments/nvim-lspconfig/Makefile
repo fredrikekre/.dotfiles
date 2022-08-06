@@ -38,22 +38,26 @@ packagecompiler/precompile_statements.jl: Manifest.toml bin/julia
 
 bin/julia:
 	mkdir -p bin
-	rm -f bin/julia
-	echo "#!/bin/bash" > bin/julia
-	echo "JULIA=${JULIA}" >> bin/julia
-	echo "if [[ \$${JULIA_TRACE_COMPILE} = \"1\" ]]; then" >> bin/julia
-	echo "    exec \$${JULIA} --trace-compile=${PWD}/packagecompiler/precompile_statements.jl \"\$$@\"" >> bin/julia
-	echo "elif [[ -f ${PWD}/$(SYSIMAGE) ]]; then" >> bin/julia
-	echo "    exec \$${JULIA} --sysimage=${PWD}/$(SYSIMAGE) \"\$$@\"" >> bin/julia
-	echo "else" >> bin/julia
-	echo "    exec \$${JULIA} \"\$$@\"" >> bin/julia
-	echo "fi" >> bin/julia
-	chmod +x bin/julia
+	echo "$$JULIA_SHIM" > $@
+	chmod +x $@
 
 clean:
 	rm -rf $(SYSIMAGE) packagecompiler bin
 
 .PHONY: clean default
+
+export JULIA_SHIM
+define JULIA_SHIM
+#!/bin/bash
+JULIA=${JULIA}
+if [[ $${JULIA_TRACE_COMPILE} = "1" ]]; then
+    exec $${JULIA} --trace-compile=${PWD}/packagecompiler/precompile_statements.jl "$$@"
+elif [[ -f ${PWD}/$(SYSIMAGE) ]]; then
+    exec $${JULIA} --sysimage=${PWD}/$(SYSIMAGE) "$$@"
+else
+    exec $${JULIA} "$$@"
+fi
+endef
 
 export PACKAGE_CONTENT
 define PACKAGE_CONTENT
