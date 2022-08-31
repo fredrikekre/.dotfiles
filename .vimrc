@@ -84,7 +84,7 @@ call plug#end()
 :nnoremap <C-H> <C-W><C-H>
 "Easier fzf keybindings
 :nnoremap <C-F> :Rg!<CR>
-:nnoremap <C-P> :GFiles!<CR>
+:nnoremap <expr> <C-P> (len(system('git rev-parse')) ? ':Files!' : ':GFiles!')."<CR>"
 "More natural split directions
 :set splitbelow
 :set splitright
