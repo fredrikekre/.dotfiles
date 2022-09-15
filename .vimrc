@@ -77,6 +77,8 @@ call plug#end()
 :imap jk <Esc>
 :let mapleader = " "
 :set tabstop=4 softtabstop=4 shiftwidth=4 expandtab smarttab autoindent "Nicer tab actions
+"Highlight without moving
+:nnoremap * *``
 "Move aroung splits without the C-W prefix
 :nnoremap <C-J> <C-W><C-J>
 :nnoremap <C-K> <C-W><C-K>
