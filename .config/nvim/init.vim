@@ -87,7 +87,11 @@ require'lspconfig'.julials.setup({
         return util.root_pattern 'Project.toml'(fname) or util.find_git_ancestor(fname) or
                util.path.dirname(fname)
     end,
-    on_attach = on_attach,
+    on_attach = function(client, bufnr)
+        on_attach(client, bufnr)
+        -- Disable automatic formatexpr since the LS.jl formatter isn't so nice.
+        vim.bo[bufnr].formatexpr = ''
+    end,
     capabilities = capabilities,
 })
 
