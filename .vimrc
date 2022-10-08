@@ -106,6 +106,9 @@ call plug#end()
 "Keep some lines above/below cursor
 :set scrolloff=10
 
+" Disable mouse (default on since neovim 0.8)
+:set mouse=
+
 "Use clipboard for everything (instead of */+ registers)
 :set clipboard+=unnamedplus
 
