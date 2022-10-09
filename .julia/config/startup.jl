@@ -11,8 +11,10 @@ if Base.isinteractive() &&
 
     # Automatically load Debugger.jl when encountering @enter
     pushfirst!(REPL.repl_ast_transforms, function(ast::Union{Expr,Nothing})
-        if Meta.isexpr(ast, :toplevel, 2) && Meta.isexpr(ast.args[2], :macrocall) &&
-           ast.args[2].args[1] === Symbol("@enter") && !isdefined(Main, Symbol("@enter"))
+        contains_enter(x) = false
+        contains_enter(x::Expr) = (Meta.isexpr(x, :macrocall) && x.args[1] === Symbol("@enter")) ||
+                                  any(contains_enter, x.args)
+        if Meta.isexpr(ast, :toplevel, 2) && contains_enter(ast) && !isdefined(Main, Symbol("@enter"))
            @info "Loading Debugger..."
            Core.eval(Main, :(using Debugger))
         end
