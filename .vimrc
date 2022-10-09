@@ -24,6 +24,9 @@ call plug#begin('~/.vim/plugged')
     " Send code to REPL
     Plug 'jpalardy/vim-slime'
 
+    " Seemless vim/tmux navigation
+    Plug 'christoomey/vim-tmux-navigator'
+
     if has('nvim')
         " LSP helpers
         Plug 'neovim/nvim-lspconfig'
@@ -79,11 +82,6 @@ call plug#end()
 :set tabstop=4 softtabstop=4 shiftwidth=4 expandtab smarttab autoindent "Nicer tab actions
 "Highlight without moving
 :nnoremap * *``
-"Move aroung splits without the C-W prefix
-:nnoremap <C-J> <C-W><C-J>
-:nnoremap <C-K> <C-W><C-K>
-:nnoremap <C-L> <C-W><C-L>
-:nnoremap <C-H> <C-W><C-H>
 "Easier fzf keybindings
 :nnoremap <C-F> :Rg!<CR>
 :nnoremap <expr> <C-P> (len(system('git rev-parse')) ? ':Files!' : ':GFiles!')."<CR>"
