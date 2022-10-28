@@ -56,7 +56,7 @@ cmp.setup({
 })
 
 -- Setup lspconfig: capabilities is passed to lspconfig.$server.setup
-local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 -- Set LSP keymappings in on_attach (i.e. only in buffers with LSP active)
 local on_attach = function(client, bufnr)
