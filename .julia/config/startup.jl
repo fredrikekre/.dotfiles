@@ -9,14 +9,30 @@ if Base.isinteractive() &&
         return ast
     end)
 
-    # Automatically load Debugger.jl when encountering @enter
+    # Automatically load Debugger.jl when encountering @enter or @run and BenchmarkTools.jl
+    # when encountering @btime or @benchmark.
     pushfirst!(REPL.repl_ast_transforms, function(ast::Union{Expr,Nothing})
-        contains_enter(x) = false
-        contains_enter(x::Expr) = (Meta.isexpr(x, :macrocall) && x.args[1] === Symbol("@enter")) ||
-                                  any(contains_enter, x.args)
-        if Meta.isexpr(ast, :toplevel, 2) && contains_enter(ast) && !isdefined(Main, Symbol("@enter"))
-           @info "Loading Debugger..."
-           Core.eval(Main, :(using Debugger))
+        contains_macro(_, _) = false
+        function contains_macro(x::Expr, s::Symbol)
+            (Meta.isexpr(x, :macrocall) && x.args[1] === s) ||
+            any(y -> contains_macro(y, s), x.args)
+        end
+        if Meta.isexpr(ast, :toplevel, 2) &&
+           !isdefined(Main, :Debugger)    &&
+           (contains_macro(ast, Symbol("@enter")) || contains_macro(ast, Symbol("@run")))
+            @info "Loading Debugger ..."
+            try
+                Core.eval(Main, :(using Debugger))
+            catch
+            end
+        elseif Meta.isexpr(ast, :toplevel, 2) &&
+           !isdefined(Main, :BenchmarkTools)  &&
+           (contains_macro(ast, Symbol("@btime")) || contains_macro(ast, Symbol("@benchmark")))
+            @info "Loading BenchmarkTools ..."
+            try
+                Core.eval(Main, :(using BenchmarkTools))
+            catch
+            end
         end
         return ast
     end)
