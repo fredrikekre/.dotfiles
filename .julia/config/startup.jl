@@ -9,6 +9,22 @@ if Base.isinteractive() &&
         return ast
     end)
 
+    # Restart Julia with :r
+    pushfirst!(REPL.repl_ast_transforms, function(ast::Union{Expr,Nothing})
+        if Meta.isexpr(ast, :toplevel, 2) && ast.args[2] === QuoteNode(:r)
+            argv = Base.julia_cmd().exec
+            opts = Base.JLOptions()
+            if opts.project != C_NULL
+                push!(argv, "--project=$(unsafe_string(opts.project))")
+            end
+            if opts.nthreads != 0
+                push!(argv, "--threads=$(opts.nthreads)")
+            end
+            @ccall execv(argv[1]::Cstring, argv::Ref{Cstring})::Cint
+        end
+        return ast
+    end)
+
     # Automatically load Debugger.jl when encountering @enter or @run and BenchmarkTools.jl
     # when encountering @btime or @benchmark.
     pushfirst!(REPL.repl_ast_transforms, function(ast::Union{Expr,Nothing})
