@@ -24,8 +24,16 @@ if Base.isinteractive() &&
     end)
 
     # Automatically load tooling on demand:
-    # - Debugger.jl when encountering @enter or @run
     # - BenchmarkTools.jl when encountering @btime or @benchmark
+    # - Debugger.jl when encountering @enter or @run
+    # - Profile.jl when encountering @profile
+    # - ProfileView.jl when encountering @profview
+    local tooling_dict = Dict{Symbol,Vector{Symbol}}(
+        :BenchmarkTools => Symbol.(["@btime", "@benchmark"]),
+        :Debugger       => Symbol.(["@enter", "@run"]),
+        :Profile        => Symbol.(["@profile"]),
+        :ProfileView    => Symbol.(["@profview"]),
+    )
     pushfirst!(REPL.repl_ast_transforms, function(ast::Union{Expr,Nothing})
         function contains_macro(ast, m)
             return ast isa Expr && (
@@ -33,21 +41,14 @@ if Base.isinteractive() &&
                 any(x -> contains_macro(x, m), ast.args)
             )
         end
-        if !isdefined(Main, :Debugger) && (
-            contains_macro(ast, Symbol("@enter")) || contains_macro(ast, Symbol("@run"))
-        )
-            @info "Loading Debugger ..."
-            try
-                Core.eval(Main, :(using Debugger))
-            catch
-            end
-        elseif !isdefined(Main, :BenchmarkTools) && (
-            contains_macro(ast, Symbol("@btime")) || contains_macro(ast, Symbol("@benchmark"))
-        )
-            @info "Loading BenchmarkTools ..."
-            try
-                Core.eval(Main, :(using BenchmarkTools))
-            catch
+        for (mod, macros) in tooling_dict
+            if any(contains_macro(ast, s) for s in macros) && !isdefined(Main, mod)
+                @info "Loading $mod ..."
+                try
+                    Core.eval(Main, :(using $mod))
+                catch err
+                    @info "Failed to automatically load $mod" exception=err
+                end
             end
         end
         return ast
