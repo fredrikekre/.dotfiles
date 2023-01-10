@@ -78,3 +78,22 @@ if command -v nvim &> /dev/null; then
 else
     export EDITOR=vim
 fi
+
+# Wrapper around bw login/unlock that automatically export the session key
+if command -v bw &> /dev/null ; then
+    function bwu () {
+        if [ -z "${BW_SESSION}" ]; then
+            export BW_SESSION
+            case "$(bw status)" in
+            *"\"unauthenticated\""*)
+                echo "(bwu) bw login:"
+                BW_SESSION=$(bw login --raw)
+                ;;
+            *"\"locked\""*)
+                echo "(bwu) bw unlock:"
+                BW_SESSION=$(bw unlock --raw)
+                ;;
+            esac
+        fi
+    }
+fi
