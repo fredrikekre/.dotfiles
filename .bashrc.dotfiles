@@ -97,3 +97,11 @@ if command -v bw &> /dev/null ; then
         fi
     }
 fi
+
+# Wrap gh to fetch auth token from bw
+if command -v gh &> /dev/null ; then
+    function gh () {
+        local TOKEN=${GITHUB_TOKEN:-$(trap '' INT; bw get notes a8aec2cf-0600-4067-b6a6-d2370132f24f)}
+        GITHUB_TOKEN=${TOKEN} $(which gh) "$@"
+    };
+fi
