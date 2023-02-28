@@ -30,7 +30,7 @@ fi
 
 # Start tmux by default
 if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
-    if tmux ls | grep "default: " > /dev/null; then
+    if grep "default: " <(tmux list-sessions 2> /dev/null) > /dev/null; then
         tmux attach -t default
     else
         tmux new -s default
