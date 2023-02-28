@@ -1,3 +1,6 @@
+#!/bin/bash
+# vim: ft=sh
+
 # Common commands for .bashrc. Include by adding the following to .bashrc:
 #
 #     # Include cross-system common parts from .dotfiles.git repo
