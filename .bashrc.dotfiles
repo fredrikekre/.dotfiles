@@ -11,6 +11,20 @@ case $- in
       *) return;;
 esac
 
+# ssh-agent: start automatically unless SSH_AUTH_SOCK is already set by e.g. ssh-agent forwarding
+if command -v ssh-agent &> /dev/null && [ ! -S "${SSH_AUTH_SOCK}" ] && [ -z "${TMUX}" ]; then
+    eval "$(ssh-agent -t 12h)" > /dev/null
+    trap 'eval "$(ssh-agent -k)" > /dev/null' EXIT
+fi
+# ssh-agent: adjust SSH_AUTH_SOCK and SSH_AGENT_PID in tmux session bash prompts
+if [ -n "${TMUX}" ]; then
+    function _tmux_update_environment() {
+        eval "$(tmux show-environment -s SSH_AUTH_SOCK)"
+        eval "$(tmux show-environment -s SSH_AGENT_PID)"
+    }
+    PROMPT_COMMAND="_tmux_update_environment"
+fi
+
 # Start tmux by default
 if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
     if tmux ls | grep "default: " > /dev/null; then
