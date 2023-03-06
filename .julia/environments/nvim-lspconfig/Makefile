@@ -38,7 +38,7 @@
 #      julia --project=. -e 'using Pkg; Pkg.update()'
 #      make
 
-JULIA=$(shell which julia)
+JULIA ?= $(shell which julia)
 JULIA_PROJECT=
 SRCDIR:=$(shell dirname $(abspath $(firstword $(MAKEFILE_LIST))))
 ifeq ($(shell uname -s),Linux)
