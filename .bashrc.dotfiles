@@ -78,6 +78,7 @@ fi
 # Julia environment variables
 export JULIA_PKG_DEVDIR=$HOME/dev
 export JULIA_PROJECT=@.
+export JULIA_PKG_USE_CLI_GIT=true
 
 # Add private bin directories to PATH
 PATH="$HOME/bin:$HOME/.local/bin:$PATH"
