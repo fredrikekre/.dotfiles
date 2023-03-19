@@ -125,6 +125,11 @@ require('gitsigns').setup({
         local opts = { expr=true, noremap=true, silent=true, }
         vim.api.nvim_buf_set_keymap(bufnr, 'n', ']c', "&diff ? ']c' : '<cmd>Gitsigns next_hunk<CR>'", opts)
         vim.api.nvim_buf_set_keymap(bufnr, 'n', '[c', "&diff ? '[c' : '<cmd>Gitsigns prev_hunk<CR>'", opts)
+        -- Hunk actions
+        local opts = { noremap=true, silent=true, }
+        vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>hs', '<cmd>Gitsigns stage_hunk<CR>', opts)
+        vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>hr', '<cmd>Gitsigns reset_hunk<CR>', opts)
+        vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>hp', '<cmd>Gitsigns preview_hunk<CR>', opts)
     end,
     attach_to_untracked = false,
 })
