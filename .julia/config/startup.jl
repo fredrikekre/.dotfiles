@@ -26,11 +26,13 @@ if Base.isinteractive() &&
 
     # Automatically load tooling on demand:
     # - BenchmarkTools.jl when encountering @btime or @benchmark
+    # - Cthulhu.jl when encountering @descend(_code_(typed|warntype))
     # - Debugger.jl when encountering @enter or @run
     # - Profile.jl when encountering @profile
     # - ProfileView.jl when encountering @profview
     local tooling_dict = Dict{Symbol,Vector{Symbol}}(
         :BenchmarkTools => Symbol.(["@btime", "@benchmark"]),
+        :Cthulhu        => Symbol.(["@descend", "@descend_code_typed", "@descend_code_warntype"]),
         :Debugger       => Symbol.(["@enter", "@run"]),
         :Profile        => Symbol.(["@profile"]),
         :ProfileView    => Symbol.(["@profview"]),
