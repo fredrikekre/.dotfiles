@@ -18,7 +18,8 @@ if Base.isinteractive() &&
             if opts.nthreads != 0
                 push!(argv, "--threads=$(opts.nthreads)")
             end
-            @ccall execv(argv[1]::Cstring, argv::Ref{Cstring})::Cint
+            # @ccall execv(argv[1]::Cstring, argv::Ref{Cstring})::Cint
+            ccall(:execv, Cint, (Cstring, Ref{Cstring}), argv[1], argv)
         end
         return ast
     end)
