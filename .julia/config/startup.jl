@@ -30,12 +30,18 @@ if Base.isinteractive() &&
     # - Debugger.jl when encountering @enter or @run
     # - Profile.jl when encountering @profile
     # - ProfileView.jl when encountering @profview
+    # - Test.jl when encountering @test, @testset, @test_xxx, ...
     local tooling_dict = Dict{Symbol,Vector{Symbol}}(
         :BenchmarkTools => Symbol.(["@btime", "@benchmark"]),
         :Cthulhu        => Symbol.(["@descend", "@descend_code_typed", "@descend_code_warntype"]),
         :Debugger       => Symbol.(["@enter", "@run"]),
         :Profile        => Symbol.(["@profile"]),
         :ProfileView    => Symbol.(["@profview"]),
+        :Test           => Symbol.([
+                               "@test", "@testset", "@test_broken", "@test_deprecated",
+                               "@test_logs", "@test_nowarn", "@test_skip",
+                               "@test_throws", "@test_warn",
+                           ]),
     )
     pushfirst!(REPL.repl_ast_transforms, function(ast::Union{Expr,Nothing})
         function contains_macro(ast, m)
