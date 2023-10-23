@@ -114,6 +114,12 @@ require("null-ls").setup({
     },
 })
 
+-- Go LSP (gopls)
+require('lspconfig').gopls.setup({
+    on_attach = on_attach,
+    capabilities = capabilities,
+})
+
 
 require('gitsigns').setup({
     signs = {
