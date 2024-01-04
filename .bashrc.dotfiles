@@ -28,6 +28,10 @@ if [ -n "${TMUX}" ]; then
     PROMPT_COMMAND="_tmux_update_environment"
 fi
 
+# gpg-agent: started on demand, but must set GPG_TTY
+GPG_TTY=$(tty)
+export GPG_TTY
+
 # Start tmux by default
 if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
     if grep "default: " <(tmux list-sessions 2> /dev/null) > /dev/null; then
