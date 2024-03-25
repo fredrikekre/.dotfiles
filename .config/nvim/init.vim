@@ -120,6 +120,12 @@ require('lspconfig').gopls.setup({
     capabilities = capabilities,
 })
 
+-- YAML LSP (yaml-language-server)
+require('lspconfig').yamlls.setup({
+    on_attach = on_attach,
+    capabilities = capabilities,
+})
+
 
 require('gitsigns').setup({
     signs = {
