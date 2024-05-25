@@ -123,3 +123,10 @@ call plug#end()
 :nnoremap <S-CR> <Plug>SlimeParagraphSend
 :xnoremap <C-c><C-c> <Plug>SlimeRegionSend
 :xnoremap <S-CR> <Plug>SlimeRegionSend
+
+" Save folds between sessions
+augroup SaveFileView
+    autocmd!
+    au BufWinLeave ?* mkview
+    au BufWinEnter ?* silent! loadview
+augroup END
