@@ -7,9 +7,6 @@ call plug#begin('~/.vim/plugged')
     Plug 'junegunn/fzf'
     Plug 'junegunn/fzf.vim'
 
-    " Gruvbox color theme
-    Plug 'gruvbox-community/gruvbox'
-
     "Status/tabline
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
@@ -50,20 +47,15 @@ call plug#begin('~/.vim/plugged')
         " null-ls
         " Plug 'nvim-lua/plenary.nvim'
         Plug 'jose-elias-alvarez/null-ls.nvim'
+
+        " Catppuccin color themes
+        Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
     end
 
 call plug#end()
 
-" Color scheme adjustments
-:let g:gruvbox_colors = {}
-:let g:gruvbox_colors.dark0 = ['#0f0f0f', 233]
-:let g:gruvbox_colors.dark1 = ['#282828', 235] " dark0
-:let g:gruvbox_colors.dark2 = ['#3c3836', 237] " dark1
-:let g:gruvbox_colors.dark3 = ['#504945', 239] " dark2
-:let g:gruvbox_colors.dark4 = ['#665c54', 241] " dark3
-:let g:gruvbox_invert_selection=0
-:let g:gruvbox_sign_column='bg0'
-:colorscheme gruvbox
+" Catppuccin colorscheme with the mocha style
+:colorscheme catppuccin-mocha
 :set termguicolors
 
 "Line numbers
