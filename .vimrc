@@ -50,6 +50,9 @@ call plug#begin('~/.vim/plugged')
 
         " Catppuccin color themes
         Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
+
+        " Github Copilot
+        Plug 'github/copilot.vim'
     end
 
 call plug#end()
@@ -115,6 +118,13 @@ call plug#end()
 :nnoremap <S-CR> <Plug>SlimeParagraphSend
 :xnoremap <C-c><C-c> <Plug>SlimeRegionSend
 :xnoremap <S-CR> <Plug>SlimeRegionSend
+
+" Configure Copilot and limit to certain filetypes
+let g:copilot_filetypes = {
+    \ '*': v:false,
+    \ 'julia': v:true,
+    \ 'markdown': v:true,
+\}
 
 " Save folds between sessions
 augroup SaveFileView
