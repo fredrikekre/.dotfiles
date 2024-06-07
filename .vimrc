@@ -122,3 +122,8 @@ augroup SaveFileView
     au BufWinLeave *.* mkview
     au BufWinEnter *.* silent! loadview
 augroup END
+
+augroup FileTypeJulia
+    autocmd!
+    au FileType julia set textwidth=92
+augroup END
