@@ -119,6 +119,6 @@ call plug#end()
 " Save folds between sessions
 augroup SaveFileView
     autocmd!
-    au BufWinLeave ?* mkview
-    au BufWinEnter ?* silent! loadview
+    au BufWinLeave *.* mkview
+    au BufWinEnter *.* silent! loadview
 augroup END
