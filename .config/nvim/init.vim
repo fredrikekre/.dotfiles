@@ -76,7 +76,7 @@ require'lspconfig'.julials.setup({
     on_new_config = function(new_config, _)
         local julia = vim.fn.expand("~/.julia/environments/nvim-lspconfig/bin/julia")
         if REVISE_LANGUAGESERVER then
-            new_config.cmd[5] = (new_config.cmd[5]):gsub("using LanguageServer", "using Revise; using LanguageServer; if isdefined(LanguageServer, :USE_REVISE); LanguageServer.USE_REVISE[] = true; end")
+            new_config.cmd[5] = (new_config.cmd[5]):gsub("using LanguageServer", "using Revise; using LanguageServer; LanguageServer.USE_REVISE[] = true")
         elseif require'lspconfig'.util.path.is_file(julia) then
             new_config.cmd[1] = julia
         end
