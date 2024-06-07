@@ -126,6 +126,18 @@ require('lspconfig').yamlls.setup({
     capabilities = capabilities,
 })
 
+-- Ansible LSP (ansible-language-server)
+require'lspconfig'.ansiblels.setup({
+    on_attach = on_attach,
+    capabilities = capabilities,
+})
+
+-- Terraform LSP (terraform-ls)
+require'lspconfig'.terraformls.setup({
+    on_attach = on_attach,
+    capabilities = capabilities,
+})
+
 
 require('gitsigns').setup({
     signs = {
