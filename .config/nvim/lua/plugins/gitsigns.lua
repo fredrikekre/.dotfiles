@@ -3,6 +3,11 @@
 local function configure_gitsigns()
     local gitsigns = require("gitsigns")
     gitsigns.setup({
+        signs = {
+            add = {text = "+"},
+            change = {text = "±"},
+        },
+        signs_staged_enable = false, -- TODO: Enable this with signs_staged configured
         on_attach = function(bufnr)
             local opts = {buffer = bufnr, silent = true}
             -- Hunk navigation
