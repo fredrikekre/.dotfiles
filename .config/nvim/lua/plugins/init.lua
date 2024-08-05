@@ -13,5 +13,5 @@ return {
     -- https://github.com/nvim-lua/plenary.nvim
     {"nvim-lua/plenary.nvim"},
     -- https://github.com/andythigpen/nvim-coverage
-    {"andythigpen/nvim-coverage"},
+    {"andythigpen/nvim-coverage", opts = {}},
 }
