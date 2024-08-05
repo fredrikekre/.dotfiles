@@ -21,6 +21,7 @@ return {
             -- Disable these since they are used for navigation
             ["<C-h>"] = false,
             ["<C-l>"] = false,
+            ["<C-p>"] = false,
             -- Toggle detailed view with <leader>d
             ["<leader>d"] = {
                 callback = function()
