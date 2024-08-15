@@ -46,7 +46,7 @@ local servers = {
                 local REVISE_LANGUAGESERVER = false
                 if REVISE_LANGUAGESERVER then
                     new_config.cmd[5] = (new_config.cmd[5]):gsub("using LanguageServer", "using Revise; using LanguageServer; LanguageServer.USE_REVISE[] = true")
-                elseif require(lspconfig).util.path.is_file(julia) then
+                elseif require("lspconfig").util.path.is_file(julia) then
                     new_config.cmd[1] = julia
                 end
             end,
