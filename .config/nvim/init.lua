@@ -11,6 +11,8 @@ vim.opt.termguicolors = true
 vim.opt.number = true
 vim.opt.relativenumber = true
 
+-- Store undo history
+vim.opt.undofile = true
 
 -- Use OS clipboard for yank/paste
 vim.opt.clipboard = "unnamedplus"
