@@ -13,5 +13,6 @@ return {
     -- https://github.com/nvim-lua/plenary.nvim
     {"nvim-lua/plenary.nvim"},
     -- https://github.com/andythigpen/nvim-coverage
-    {"andythigpen/nvim-coverage", opts = {}},
+    -- {"andythigpen/nvim-coverage", opts = {}},
+    {"fredrikekre/nvim-coverage", branch = "fe/julia", opts = {lang = {julia = {directories = "src,ext,juliac"}}}},
 }
