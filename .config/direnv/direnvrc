@@ -1,6 +1,6 @@
 #!/bin/bash
 
-JULIA_VERSIONS="/opt/julia"
+JULIA_VERSIONS="${HOME}/.julia/juliaup"
 
 julia_args() {
     # Create a bin directory
