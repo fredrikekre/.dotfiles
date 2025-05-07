@@ -14,4 +14,16 @@ return {
     {"nvim-lua/plenary.nvim"},
     -- https://github.com/andythigpen/nvim-coverage
     {"andythigpen/nvim-coverage", opts = {lang = {julia = {directories = "src,ext,juliac"}}}},
+    {
+        "folke/todo-comments.nvim",
+        dependencies = {"nvim-lua/plenary.nvim"},
+        opts = {
+            signs = false,
+            highlight = {
+                keyword = "bg",
+                after = "fg",
+                multiline_pattern = "^ .",
+            },
+        },
+    },
 }
