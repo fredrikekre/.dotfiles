@@ -60,6 +60,9 @@ vim.api.nvim_create_autocmd(
     }
 )
 
+-- Show diagnostics as virtual text (disabled by default since 0.11)
+vim.diagnostic.config({ virtual_text = true })
+
 -- Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
