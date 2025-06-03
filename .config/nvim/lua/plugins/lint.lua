@@ -9,11 +9,11 @@ return {
         }
         -- Configure auto commands to trigger linting when opening and writing to disk
         vim.api.nvim_create_autocmd({"FileType"}, {
-            pattern = "sh",
-            once = true,
+            pattern = {"sh"},
             callback = function()
                 -- Trigger lint whenever writing to disk
                 vim.api.nvim_create_autocmd({"BufWritePost"}, {
+                    buffer = 0,
                     callback = function()
                         lint.try_lint("shellcheck")
                     end,
