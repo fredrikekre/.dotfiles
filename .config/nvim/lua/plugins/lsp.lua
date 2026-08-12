@@ -31,7 +31,7 @@ local function config()
         local REVISE_LANGUAGESERVER = false
         if REVISE_LANGUAGESERVER then
             cmd[5] = (cmd[5]):gsub("using LanguageServer", "using Revise; using LanguageServer; LanguageServer.USE_REVISE[] = true")
-        elseif require("lspconfig").util.path.is_file(julia) then
+        elseif (vim.uv.fs_stat(julia) or {}).type == "file" then
             cmd[1] = julia
         end
         vim.lsp.config('julials', {
@@ -52,7 +52,6 @@ local function config()
     -- Enable some more servers. These don't need special handling, yey!
     vim.lsp.enable({
         "ansiblels",     -- Ansible LSP (ansible-language-server)
-        "clangd",        -- C/C++ LSP (clangd)
         "clangd",        -- C/C++ LSP (clangd)
         "gopls",         -- Go LSP (gopls)
         "pylsp",         -- Python LSP (python-lsp-server)
